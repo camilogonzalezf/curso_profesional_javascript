@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Call, Apply y Bind</p>
+
+    <button class="call-to-action">Aprender</button>
+    <button class="call-to-action">Aprender Más</button>
+    <button class="call-to-action">Nunca Para de Aprender</button>
+    <script>
+        function saludar(){
+            console.log(`Hola Soy ${this.name} ${this.apellido}`)
+        }
+
+        const richard = {
+            name: "Richard",
+            apellido: "Arias"
+        }
+
+        saludar.call(richard)
+
+        function caminar(metros, direccion){
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`)
+        }
+
+        caminar.call(richard, 100, 'Norte') //CALL *********}
+    
+        caminar.apply(richard , [800 , 'Sur']) //Apply recibe arreglos
+
+        const valores = [550, 'Este']
+
+        caminar.apply(richard, valores)
+
+        //  Bind crea nuevas funciones
+        const daniel = {
+            name: 'Daniel',
+            apellido: 'Sanchez'
+        }
+        const danielSaluda = saludar.bind(daniel)
+        danielSaluda()
+        const danielCamina = caminar.bind(daniel, 1500, 'Oeste')
+        danielCamina()
+
+        const buttons = document.getElementsByClassName("call-to-action"); //Obtengo un NodeList
+
+        Array.prototype.forEach.call(buttons, button => { //Usando el NodeList, lo leo como arreglo
+            button.onclick = () => alert('Nunca pares de aprender!');
+        })
+
+    </script>
+</body>
+</html>

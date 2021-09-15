@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><em>Abre Consola</em></p>
+    <script>
+        //IIFE - Immediately Invoked Function Expression
+        /*CLOSURE 1 ********
+        (function(){ 
+            let color = 'green';
+
+            function printColor() {
+                console.log(color);
+            }
+            printColor();
+
+         }) ();
+         **************
+
+         function makeColorPrinter(color){ //Closure nos permite hacer variables privadas
+             let colorMessage = `The color is ${color}`
+
+             return function () {
+                 console.log(colorMessage); 
+             }
+         }
+
+         let greenColorPrinter = makeColorPrinter("green")
+         console.log(greenColorPrinter())*/
+
+         /**********************************************/
+         function makeCounter(n){ //Closure variable privada como si fuera una clase
+             let count = n;
+
+             return {
+                 increase: function(){
+                     count +=1
+                 },
+                 decrease: function (){
+                     count-=1
+                 },
+                 getCount: function(){
+                     return count;
+                 }
+             }
+
+         }
+
+         let counter = makeCounter(7)
+
+         console.log('El contador es : ' , counter.getCount())
+         counter.increase()
+         console.log('El contador es : ' , counter.getCount())
+         counter.decrease()
+         counter.decrease()
+         counter.decrease()
+         console.log('El contador es : ' , counter.getCount())
+
+</script>
+
+</body>
+</html>
